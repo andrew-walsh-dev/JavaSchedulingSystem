@@ -36,5 +36,6 @@
         <jarDirectory url="file://$USER_HOME$/Downloads/openjfx-11.0.2_windows-x64_bin-sdk/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="mysql.connector.java" level="project" />
   </component>
 </module>
