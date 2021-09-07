@@ -37,4 +37,38 @@ public class UserDao {
         }
         return users;
     }
+
+    public User getUserById(int id) throws SQLException {
+        String q = String.format("SELECT * FROM users WHERE User_ID = %f", id);
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(q);
+        rs.next();
+        return new User(
+                rs.getInt("User_ID"),
+                rs.getString("User_Name"),
+                rs.getString("Password"),
+                rs.getDate("Create_Date"),
+                rs.getString("Created_By"),
+                rs.getDate("Last_Update"),
+                rs.getString("Last_Updated_By"),
+                rs.getInt("COUNTRY_ID")
+        );
+    }
+
+    public User getUserByUsername(String username) throws SQLException {
+        String q = String.format("SELECT * FROM users WHERE User_ID = %s", username);
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(q);
+        rs.next();
+        return new User(
+                rs.getInt("User_ID"),
+                rs.getString("User_Name"),
+                rs.getString("Password"),
+                rs.getDate("Create_Date"),
+                rs.getString("Created_By"),
+                rs.getDate("Last_Update"),
+                rs.getString("Last_Updated_By"),
+                rs.getInt("COUNTRY_ID")
+        );
+    }
 }
