@@ -13,11 +13,11 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="319.0" layoutY="178.0" />
-      <TextField layoutX="319.0" layoutY="258.0" />
+      <TextField fx:id="usernameTextField" layoutX="319.0" layoutY="178.0" />
+      <TextField fx:id="passwordTextField" layoutX="319.0" layoutY="258.0" />
       <Label fx:id="usernameLabel" layoutX="225.0" layoutY="182.0" text="Username" />
       <Label fx:id="passwordLabel" layoutX="227.0" layoutY="262.0" text="Password" />
-      <Button fx:id="loginButton" layoutX="368.0" layoutY="340.0" mnemonicParsing="false" text="Login" />
+      <Button fx:id="loginButton" layoutX="368.0" layoutY="340.0" mnemonicParsing="false" onAction="#onLoginButtonAction" text="Login" />
       <Label fx:id="locationLabel" layoutX="62.0" layoutY="45.0" />
    </children>
 </AnchorPane>

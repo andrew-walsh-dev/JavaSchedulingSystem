@@ -9,7 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,6 +25,8 @@ public class LoginFormController {
     Label loginLabel, usernameLabel, passwordLabel, locationLabel;
     @FXML
     Button loginButton;
+    @FXML
+    TextField usernameTextField, passwordTextField;
 
     /**
      * function to run when login form is loaded
@@ -45,25 +49,60 @@ public class LoginFormController {
      * function to run when login button is clicked
      */
     public void onLoginButtonAction() throws SQLException, IOException {
-        UserDao dao = new UserDao();
-        User user = dao.getUserByUsername(usernameLabel.getText());
+        try {
+            UserDao dao = new UserDao();
+            User user = dao.getUserByUsername(usernameTextField.getText());
 
-        //successful login
-        if (passwordLabel.getText().equals(user.getPassword())) {
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            Parent parent = FXMLLoader.load(getClass().getResource("../FXML/main.fxml"));
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
-            stage.show();
-        }
-        //failed login
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Login Error");
-            alert.setContentText("Invalid login attempt.");
+            //successful login
+            if (passwordTextField.getText().equals(user.getPassword())) {
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                Parent parent = FXMLLoader.load(getClass().getResource("../FXML/login.fxml"));
+                Scene scene = new Scene(parent);
+                stage.setScene(scene);
+                stage.show();
+                System.out.println("works");
+            }
+            //failed login
+            else {
+                Locale currentLocale = Locale.getDefault();
+                if (currentLocale.getLanguage().equals("fr")) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setHeaderText("Erreur d'identification");
+                    alert.setContentText("Tentative de connexion invalide");
 
-            alert.showAndWait();
+                    alert.showAndWait();
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Login Error");
+                    alert.setContentText("Invalid login attempt.");
+
+                    alert.showAndWait();
+                }
+            }
         }
+        catch (Exception e) {
+            System.out.println(e.toString());
+            Locale currentLocale = Locale.getDefault();
+            if (currentLocale.getLanguage().equals("fr")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Erreur d'identification");
+                alert.setContentText("Tentative de connexion invalide");
+
+                alert.showAndWait();
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Login Error");
+                alert.setContentText("Invalid login attempt.");
+
+                alert.showAndWait();
+            }
+        }
+
     }
 }

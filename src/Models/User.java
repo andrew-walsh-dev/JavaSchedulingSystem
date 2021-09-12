@@ -13,29 +13,14 @@ public class User {
     private String createdBy;
     private Date lastUpdate;
     private String lastUpdatedBy;
-    private int countryId;
 
-    public User(int id, String username, String password, Date createDate, String createdBy, Date lastUpdate, String lastUpdatedBy, int countryId) {
+    public User(int id, String username, String password, Date createDate, String createdBy, Date lastUpdate, String lastUpdatedBy) {
         this.username = username;
         this.password = password;
         this.createDate = createDate;
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
         this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    /**
-     * @return user's country id
-     */
-    public int getCountryId() {
-        return countryId;
-    }
-
-    /**
-     * @param countryId country id to set
-     */
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
     }
 
     /**
